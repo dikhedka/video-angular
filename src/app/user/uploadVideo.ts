@@ -1,5 +1,7 @@
 export class UserUploadVideo{
-    video:File;
-    name:string;
+    filePath:File;
+    fp:File;
+    fileName:string;
     description:string;
+    userName: string;
 }

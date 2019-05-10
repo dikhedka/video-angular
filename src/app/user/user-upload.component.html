@@ -1,13 +1,15 @@
 <div class="container">
+  
   <form style="background: white; justify-content: center" (ngSubmit)="uploadVideo()" #uploadForm="ngForm">
     <div class="form-group">
-      <label for="exampleFormControlFile1">Example file input</label>
-      <input type="file" class="form-control-file" accept="video/*" id="exampleFormControlFile1" [(ngModel)]="video.video" name="video" >
+      <label for="exampleFormControlFile1">Example file input {{video.path}}</label>
+      <input type="file" (change)="readUrl($event)" class="form-control-file"  
+      id="exampleFormControlFile1" [(ngModel)]="video.filePath" id="filePath" name="filePath" >
     </div>
     
     <div class="form-group">
       <label>File Name:</label> &nbsp;&nbsp;&nbsp;&nbsp;
-      <input type="text"  required [(ngModel)]="video.name" name="name">
+      <input type="text"  required [(ngModel)]="video.fileName" name="fileName">
 
     </div>
     <div class="form-group">
