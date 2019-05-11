@@ -7,7 +7,7 @@ import { UserUploadVideo } from './uploadVideo';
 @Injectable()
 export class UserService{
 
-    baseUrl = "http://localhost:8090";
+    baseUrl = "http://localhost:8085";
     uploadUrl = "http://localhost:8081";
 
     constructor(private http: HttpClient){}
@@ -26,6 +26,11 @@ export class UserService{
     }
 
     uploadVideo(fd:FormData):Observable<UserUploadVideo>{
-        return this.http.post<UserUploadVideo>(this.uploadUrl+"/upload",fd);
+        alert(fd.get("userName"));
+        return this.http.post<UserUploadVideo>(this.uploadUrl+"/upload/"+fd.get("userName"),fd);
+    }
+
+    fetch(username:String){
+        return this.http.get(this.uploadUrl+"/save/"+username);
     }
 }
