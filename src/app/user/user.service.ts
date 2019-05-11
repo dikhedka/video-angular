@@ -25,7 +25,7 @@ export class UserService{
 
     }
 
-    uploadVideo(video:UserUploadVideo):Observable<UserUploadVideo>{
-        return this.http.post<UserUploadVideo>(this.uploadUrl+"/upload",video);
+    uploadVideo(fd:FormData):Observable<UserUploadVideo>{
+        return this.http.post<UserUploadVideo>(this.uploadUrl+"/upload",fd);
     }
 }
