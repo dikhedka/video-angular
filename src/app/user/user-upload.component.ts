@@ -3,6 +3,7 @@ import { UserUploadVideo } from './uploadVideo';
 import { UserService } from './user.service';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
     templateUrl: "./user-upload.component.html",
@@ -11,7 +12,7 @@ import { HttpClient } from '@angular/common/http';
 export class UploadComponent implements OnInit {
     // url;
     video:UserUploadVideo;
-    
+    url;
     // constructor(private userService: UserService,
     //     private router: Router){}
 
@@ -50,7 +51,7 @@ export class UploadComponent implements OnInit {
 
     selectedFile: File = null;
 
-    constructor(private userService: UserService){}
+    constructor(private userService: UserService, private sanitizer: DomSanitizer){}
 
     onFileSelected(event){
         this.selectedFile = <File>event.target.files[0];
@@ -70,7 +71,12 @@ export class UploadComponent implements OnInit {
     fetch(){
         let username = JSON.parse(JSON.stringify(sessionStorage.getItem("username")));
         this.userService.fetch(username).subscribe((data)=>{
+            var newBlob = new Blob([data], { type:"application/json" }); 
+            const x = window.URL.createObjectURL(newBlob);
+            this.url = this.sanitizer.bypassSecurityTrustUrl(x);
             console.log(data);
+            console.log(x);
         });
     }
+    ;
 }

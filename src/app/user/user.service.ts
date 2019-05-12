@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { UserProfile } from './user';
 import { Observable } from 'rxjs';
 import { UserUploadVideo } from './uploadVideo';
@@ -30,7 +30,7 @@ export class UserService{
         return this.http.post<UserUploadVideo>(this.uploadUrl+"/upload/"+fd.get("userName"),fd);
     }
 
-    fetch(username:String){
-        return this.http.get(this.uploadUrl+"/save/"+username);
+    fetch(username:String):Observable<Blob>{
+        return this.http.get(this.uploadUrl+"/save/"+username, {responseType: 'blob'});
     }
 }
