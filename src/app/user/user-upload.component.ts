@@ -13,6 +13,7 @@ export class UploadComponent implements OnInit {
     // url;
     video:UserUploadVideo;
     url;
+    url2;
     // constructor(private userService: UserService,
     //     private router: Router){}
 
@@ -78,5 +79,15 @@ export class UploadComponent implements OnInit {
             console.log(x);
         });
     }
-    ;
+    
+    fetchAll(){
+        this.userService.fetchAll().subscribe((data)=>{
+            //console.log(data)
+            var newBlob = new Blob([data], { type:"application/json" });
+            // const x = window.URL.createObjectURL(newBlob);
+            // this.url2 = this.sanitizer.bypassSecurityTrustUrl(x);
+            console.log(newBlob);
+            // console.log(newBlob);
+        })
+    }
 }

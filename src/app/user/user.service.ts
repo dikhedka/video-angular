@@ -33,4 +33,8 @@ export class UserService{
     fetch(username:String):Observable<Blob>{
         return this.http.get(this.uploadUrl+"/save/"+username, {responseType: 'blob'});
     }
+
+    fetchAll(){
+        return this.http.get(this.uploadUrl+"/save", {responseType: 'blob'});
+    }
 }
