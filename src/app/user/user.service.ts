@@ -3,6 +3,7 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { UserProfile } from './user';
 import { Observable } from 'rxjs';
 import { UserUploadVideo } from './uploadVideo';
+import { FileResource } from './FileResource';
 
 @Injectable()
 export class UserService{
@@ -34,7 +35,15 @@ export class UserService{
         return this.http.get(this.uploadUrl+"/save/"+username, {responseType: 'blob'});
     }
 
-    fetchAll(){
-        return this.http.get(this.uploadUrl+"/save", {responseType: 'blob'});
+    // fetchAll():Observable<Blob[]>{
+    //     return this.http.get<Blob[]>(this.uploadUrl+"/save");
+    // }
+
+    fetchAll():Observable<FileResource[]>{
+        return this.http.get<FileResource[]>(this.uploadUrl+"/save");
+    }
+
+    fetchAllById(id: String):Observable<Blob>{
+        return this.http.get(this.uploadUrl+"/retrieve/"+id, {responseType: 'blob'});
     }
 }

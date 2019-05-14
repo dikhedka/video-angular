@@ -4,6 +4,7 @@ import { UserService } from './user.service';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { DomSanitizer } from '@angular/platform-browser';
+import { FileResource } from './FileResource';
 
 @Component({
     templateUrl: "./user-upload.component.html",
@@ -11,9 +12,10 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class UploadComponent implements OnInit {
     // url;
+    file: FileResource[];
     video:UserUploadVideo;
     url;
-    url2;
+    url2: object[] = [];
     // constructor(private userService: UserService,
     //     private router: Router){}
 
@@ -73,21 +75,48 @@ export class UploadComponent implements OnInit {
         let username = JSON.parse(JSON.stringify(sessionStorage.getItem("username")));
         this.userService.fetch(username).subscribe((data)=>{
             var newBlob = new Blob([data], { type:"application/json" }); 
+            console.log(newBlob);
             const x = window.URL.createObjectURL(newBlob);
             this.url = this.sanitizer.bypassSecurityTrustUrl(x);
             console.log(data);
+            console.log(this.url);
             console.log(x);
         });
     }
     
+    // fetchAll(){
+    //     this.userService.fetchAll().subscribe((data)=>{
+    //        // console.log(new Blob([data[i]], { type:"application/json" }));
+    //         let size = data.length;
+    //         console.log(size);
+    //         let myurl;
+    //         for(var i=0; i<data.length; i++)
+    //         {
+    //             var newBlob = new Blob([data[i]], { type:"application/json" });
+    //             console.log(newBlob);
+    //             const x = window.URL.createObjectURL(newBlob);
+    //             myurl = (this.sanitizer.bypassSecurityTrustUrl(x));
+    //             this.url2.push(myurl);
+    //             //console.log(myurl);
+    //         }
+    //        // console.log(this.url2[0]);
+    //         // console.log(newBlob);
+    //     })
+    // }
+
     fetchAll(){
         this.userService.fetchAll().subscribe((data)=>{
-            //console.log(data)
-            var newBlob = new Blob([data], { type:"application/json" });
-            // const x = window.URL.createObjectURL(newBlob);
-            // this.url2 = this.sanitizer.bypassSecurityTrustUrl(x);
-            console.log(newBlob);
-            // console.log(newBlob);
-        })
+            this.file=data;
+            let myurl;
+            for(var i=0; i<this.file.length; i++){
+                this.userService.fetchAllById(this.file[i].id).subscribe((result)=>{
+                    var newBlob = new Blob([result], { type:"application/json" });
+                    const x = window.URL.createObjectURL(newBlob);
+                    myurl = this.sanitizer.bypassSecurityTrustUrl(x);
+                    this.url2.push(myurl);
+                    console.log(myurl);
+                });
+            }
+        });
     }
 }
