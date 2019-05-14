@@ -4,6 +4,7 @@ import { TotalUserComponent } from './totaluser.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { adminRoutes } from './admin.routes';
+import { AdminComponent } from './admin.component';
 
 
 
@@ -12,7 +13,8 @@ import { adminRoutes } from './admin.routes';
 @NgModule({
     declarations:[
         ReportComponent,
-        TotalUserComponent
+        TotalUserComponent,
+        AdminComponent
     ],
     imports:[
         BrowserModule,RouterModule.forChild(adminRoutes)
@@ -20,7 +22,8 @@ import { adminRoutes } from './admin.routes';
     exports:[
         ReportComponent,
         TotalUserComponent,
-        RouterModule
+        RouterModule,
+        AdminComponent
     ]
 })
 export class AdminModule{

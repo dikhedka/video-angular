@@ -20,11 +20,12 @@
         </form>
       </div>
       <div>
-        <a routerLink="upload"><img src="assets/images/upload.png" style="width: 25%; height: 25%"></a>
+          <a *ngIf="loginService.isUserLoggedIn()"routerLink="upload"><img src="assets/images/upload.png" style="width: 25%; height: 25%"></a>
+        <!-- <a routerLink="upload"><img src="assets/images/upload.png" style="width: 25%; height: 25%"></a> -->
       </div>
 
       <div>
-        <button routerLink="premium" type="button" class="btn btn-primary" id="premium">Premium</button>&nbsp;&nbsp;
+          <button *ngIf="loginService.isUserLoggedIn()" routerLink="payment"type="button" class="btn btn-primary" id="premium">Premium</button>&nbsp;&nbsp;
         <button *ngIf="!loginService.isUserLoggedIn()" routerLink="/login" routerLink="login" type="button"
           class="btn btn-primary" id="signin">Sign In</button>&nbsp;
        

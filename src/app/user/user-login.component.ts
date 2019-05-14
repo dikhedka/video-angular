@@ -12,7 +12,7 @@ import { routerNgProbeToken } from '@angular/router/src/router_module';
   styleUrls: ["./user-login.component.css"]
 })
 export class LoginComponent {
-  
+ 
   invalidLogin = false;
 
   constructor(private router: Router,
@@ -28,25 +28,22 @@ export class LoginComponent {
 
       this.userService.userLogin(email,password).subscribe((data)=>{
         if(data!=null) {
-          
-          this.invalidLogin = this.loginservice.authenticate(true,email);;
+
+            if (email=='admin'&& password=='password') {
+            this.invalidLogin = this.loginservice.adminauthenticate(true,email);
+            this.router.navigate(['/admin'])
+            // this.invalidLogin = false
+          }
+          else{
+          this.invalidLogin = this.loginservice.authenticate(true,email);
           this.router.navigate(['/home']);
-        } 
+          }
+        }
         else
         this.invalidLogin = true;
 
       })
-      
+     
     }
 }
-
-
-
-
- 
-
-  
-
-  
-      
 

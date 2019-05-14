@@ -5,6 +5,7 @@ import { SubscriptionComponent } from './user-subscription.component';
 import { UploadComponent } from './user-upload.component';
 import { LikedVideosComponent } from './user-liked-videos.component';
 import { LogoutComponent } from './user-logout.component';
+import { AdminComponent } from '../admin/admin.component';
 
 export const userRoutes: Routes = [
     { path: "login", component: LoginComponent },
@@ -12,5 +13,6 @@ export const userRoutes: Routes = [
     {path:"logout", component :LogoutComponent},
     {path:"subscriptions", component: SubscriptionComponent},
     {path: "upload",component: UploadComponent},
-    {path: "likedvideos", component: LikedVideosComponent}
+    {path: "likedvideos", component: LikedVideosComponent},
+    {path: "admin", component: AdminComponent}
 ]

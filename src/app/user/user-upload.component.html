@@ -31,13 +31,23 @@
     </div>
     
     <div class="form-group">
-      <label>File Name:</label> &nbsp;&nbsp;&nbsp;&nbsp;
-      <input type="text"  required [(ngModel)]="video.fileName" name="fileName">
+      <label>Title:</label> &nbsp;&nbsp;&nbsp;&nbsp;
+      <input type="text"  required [(ngModel)]="video.title" name="title">
 
     </div>
     <div class="form-group">
         <label>Description:</label>&nbsp;&nbsp;&nbsp;&nbsp;
         <input type="text"  maxlength="1000" required [(ngModel)]="video.description" name="description">
+    </div>
+    <div class="form-group">
+        <label>Category:</label>&nbsp;&nbsp;&nbsp;&nbsp;
+        <select  [(ngModel)]="video.category" name="category">
+         
+          <option >Sports</option>
+          <option >Music</option>
+          <option >entertainment</option>
+        </select>
+       
     </div>
     <div class="form-group">
         <input type="submit" value="Upload">

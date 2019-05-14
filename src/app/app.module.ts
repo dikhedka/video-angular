@@ -7,6 +7,7 @@ import { appRoutes } from './app.routes';
 import { WelcomeComponent } from './welcome.component';
 import { PremiumModule } from './premium/premium.module';
 import { UserModule } from './user/user.module';
+import { FileResource } from './user/FileResource';
 
 
 @NgModule({

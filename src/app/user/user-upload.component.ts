@@ -64,6 +64,9 @@ export class UploadComponent implements OnInit {
         const fd = new FormData();
         fd.append('filePath', this.selectedFile, this.selectedFile.name);
         fd.append('userName', JSON.parse(JSON.stringify(sessionStorage.getItem("username"))));
+        fd.append('category', this.video.category);
+        fd.append('title',this.video.title);
+        fd.append('description',this.video.description);
         alert(fd.get('userName'));
         alert(this.selectedFile.name);
         this.userService.uploadVideo(fd).subscribe((data)=>{

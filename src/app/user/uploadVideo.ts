@@ -3,4 +3,6 @@ export class UserUploadVideo{
     fileName:string;
     description:string;
     userName: string;
+    category:string;
+    title:string;
 }

@@ -16,10 +16,21 @@ export class AuthenticationService {
     }
   }
 
+  adminauthenticate(flag,username){
+    if (flag) {
+      sessionStorage.setItem('username',username)
+      return false;
+    } else {
+      return true;
+    }
+  }
+
   isUserLoggedIn() {
+   
     let user = sessionStorage.getItem('username')
     console.log(!(user === null))
     return !(user === null)
+
   }
 
   logOut() {

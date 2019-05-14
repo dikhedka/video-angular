@@ -11,11 +11,14 @@ import { UserService } from './user.service';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { LogoutComponent } from './user-logout.component';
+import { FileResource } from './FileResource';
+import { AdminModule } from '../admin/admin.module';
 
 
 @NgModule({
-   declarations: [LoginComponent,LogoutComponent,SignupComponent, UploadComponent, LikedVideosComponent, SubscriptionComponent],
-   imports: [BrowserModule, FormsModule, HttpClientModule, RouterModule.forChild(userRoutes)],
+   declarations: [LoginComponent,LogoutComponent,SignupComponent, UploadComponent, LikedVideosComponent, 
+      SubscriptionComponent],
+   imports: [BrowserModule, FormsModule, HttpClientModule, RouterModule.forChild(userRoutes),AdminModule],
    exports: [LoginComponent, LogoutComponent,SignupComponent, LikedVideosComponent, SubscriptionComponent,UploadComponent, RouterModule],
    providers: [UserService]
 })
